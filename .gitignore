@@ -3,8 +3,8 @@ _out
 *.db
 *.sqlite
 connection.properties
-default-*.json
-.cdsrc-private.json
+# default-*.json
+# .cdsrc-private.json
 gen/
 node_modules/
 target/
@@ -34,6 +34,6 @@ mta_archives/
 @cds-models
 
 # auto generated wildcard
-gen/db/.env
+# gen/db/.env
 # auto generated wildcard
-db/.env
+# db/.env
