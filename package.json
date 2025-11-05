@@ -5,6 +5,7 @@
   "dependencies": {
     "@cap-js/hana": "^2",
     "@sap/cds": "^9",
+    "@sap/cds-common-content": "^3.0.1",
     "express": "^4"
   },
   "devDependencies": {
@@ -13,8 +14,13 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "build":"cds build"
+    "build": "cds build"
   },
   "private": true,
-  "cds": {}
+  "cds": {
+    "requires" :{
+      "db": "hana" ,
+      "auth":"mocked"
+    }
+  }
 }
