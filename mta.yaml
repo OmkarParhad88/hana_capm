@@ -25,6 +25,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: hana_capm-db
+      - name: hana_capm-auth
 
   - name: hana_capm-db-deployer
     type: hdb
@@ -48,6 +49,7 @@ modules:
           name: srv-api # must be used in xs-app.json as well
           url: ~{srv-url}
           forwardAuthToken: true
+      - name: hana_capm-auth
     provides:
       - name: app-api
         properties:
@@ -60,3 +62,17 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: hana_capm-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: hana_capm-${org}-${space}
+        tenant-mode: dedicated
+        oauth2-configuration:
+          redirect-uris:
+            - https://*~{app-api/app-uri}/**
+    requires:
+      - name: app-api

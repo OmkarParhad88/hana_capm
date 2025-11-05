@@ -37,3 +37,5 @@ mta_archives/
 # gen/db/.env
 # auto generated wildcard
 # db/.env
+# added by cds
+.cdsrc-private.json
