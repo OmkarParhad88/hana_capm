@@ -19,13 +19,14 @@
     "start": "cds-serve",
     "build": "cds build",
     "watch-interaction": "cds watch --open interaction/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "approuter":"cds bind --exec -- node node_modules/@sap/approuter/approuter.js --workingDir app/router"
+    "approuter":"cds bind --exec -- node node_modules/@sap/approuter/approuter.js --workingDir app/router",
+    "hybrid":"cds watch --profile hybrid"
   },
   "private": true,
   "cds": {
     "requires": {
-      "db": "xsuaa",
-      "auth": "mocked",
+      "db": "hana",
+      "auth": "xsuaa",
       "[production]": {
         "auth": "xsuaa"
       }
