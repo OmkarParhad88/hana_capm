@@ -13,14 +13,24 @@
   "devDependencies": {
     "@cap-js/sqlite": "^2",
     "@sap/cds-dk": "^9",
-    "cds-plugin-ui5": "^0.13.0"
+    "cds-plugin-ui5": "^0.13.0",
+    "@cap-js/cds-typer": ">=0.1",
+    "@cap-js/cds-types": "^0.15.0",
+    "@types/node": "^22.0.0",
+    "tsx": "^4",
+    "typescript": "^5"
   },
   "scripts": {
     "start": "cds-serve",
     "build": "cds build",
+    "build:mta": "mbt build",
+    "build:module": "npx @cap-js/cds-typer srv , db --outputDirectory @cds-models",
+    "build:deploy": "mbt build && cf deploy mta_archives/capm_ts_1.0.0.mtar",
+    "undeploy": "cf undeploy capm_ts --delete-services --delete-service-keys --delete-service-brokers",
+    "watch": "npx cds-tsx w",
     "watch-interaction": "cds watch --open interaction/index.html?sap-ui-xx-viewCache=false --livereload false",
-    "approuter":"cds bind --exec -- node node_modules/@sap/approuter/approuter.js --workingDir app/router",
-    "hybrid":"cds watch --profile hybrid"
+    "approuter": "cds bind --exec -- node node_modules/@sap/approuter/approuter.js --workingDir app/router",
+    "hybrid": "cds watch --profile hybrid"
   },
   "private": true,
   "cds": {
@@ -37,5 +47,8 @@
   ],
   "sapux": [
     "app/interaction"
-  ]
+  ],
+  "imports": {
+    "#cds-models/*": "./@cds-models/*/index.js"
+  }
 }
