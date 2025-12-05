@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="cloudstine" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<descriptions defaultDescription="cloudstine"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="APP_INTERACTIONS_HEADERS">
+    <resourceUri>APP_INTERACTIONS_HEADERS</resourceUri>
+  </DataSource>
+  <DataSource id="APP_INTERACTIONS_ITEMS">
+    <resourceUri>APP_INTERACTIONS_ITEMS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="PARTNER"/>
+      <viewAttribute id="COUNTRY_CODE"/>
+      <viewAttribute id="ID"/>
+      <viewAttribute id="TEXT"/>
+      <viewAttribute id="DATE"/>
+      <viewAttribute id="PRICE" aggregationType="sum"/>
+      <viewAttribute id="CURRENCY_CODE"/>
+      <viewAttribute hidden="true" id="JOIN$ID$INTERACTION_ID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="APP_INTERACTIONS_HEADERS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARTNER" source="PARTNER"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY_CODE" source="COUNTRY_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ID" source="ID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID$INTERACTION_ID" source="ID"/>
+    </input>
+    <input node="APP_INTERACTIONS_ITEMS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="TEXT" source="TEXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATE" source="DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY_CODE" source="CURRENCY_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ID$INTERACTION_ID" source="INTERACTION_ID"/>
+    </input>
+    <joinAttribute name="JOIN$ID$INTERACTION_ID"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="PARTNER" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PARTNER"/>
+      <keyMapping columnObjectName="Join_1" columnName="PARTNER"/>
+    </attribute>
+    <attribute id="COUNTRY_CODE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY_CODE"/>
+      <keyMapping columnObjectName="Join_1" columnName="COUNTRY_CODE"/>
+    </attribute>
+    <attribute id="ID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="ID"/>
+    </attribute>
+    <attribute id="TEXT" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TEXT"/>
+      <keyMapping columnObjectName="Join_1" columnName="TEXT"/>
+    </attribute>
+    <attribute id="DATE" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="DATE"/>
+    </attribute>
+    <attribute id="CURRENCY_CODE" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY_CODE"/>
+      <keyMapping columnObjectName="Join_1" columnName="CURRENCY_CODE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="PRICE" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRICE"/>
+      <measureMapping columnObjectName="Join_1" columnName="PRICE"/>
+      <exceptionAggregationMetadata/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="105" y="189"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="APP_INTERACTIONS_HEADERS" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250.697265625"/>
+    </shape>
+    <shape modelObjectName="APP_INTERACTIONS_ITEMS" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="228.689453125"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

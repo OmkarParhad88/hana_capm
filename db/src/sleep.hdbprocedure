@@ -7,3 +7,28 @@ BEGIN
     CALL SyncLib:SLEEP_SECONDS(10);
     message := 'Omkar is here';
 END;
+
+
+-- PROCEDURE "sleep"() 
+--   LANGUAGE SQLSCRIPT 
+--   SQL SECURITY INVOKER
+--   MODIFIES SQL DATA AS 
+-- BEGIN
+--   USING SQLSCRIPT_SYNC AS SyncLib;
+--   DECLARE current_counter INTEGER;
+--   -- Get the counter value for ID 1 (no FOR UPDATE needed)
+--   SELECT "COUNTER" INTO current_counter
+--   FROM "SLEEP_STATE"
+--   WHERE "ID" = 1;
+--   -- Increment counter and update the row
+--   current_counter := current_counter + 1;
+--   UPDATE "SLEEP_STATE"
+--   SET "COUNTER" = :current_counter
+--   WHERE "ID" = 1;
+--   -- Sleep for 10 seconds using SyncLib (this syntax may vary based on your library)
+--   CALL "SyncLib::SLEEP_SECONDS"(10);
+--   -- Return result set
+--   SELECT :current_counter AS COUNTER,
+--     'Omkar is here' AS MESSAGE
+--   FROM DUMMY;
+-- END;
